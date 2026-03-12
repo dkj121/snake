@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(snake VERSION 0.1 LANGUAGES CXX)
+project(snake VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -14,20 +14,23 @@ qt_add_executable(appsnake
 
 qt_add_qml_module(appsnake
     URI snake
+    VERSION 1.0
     QML_FILES
         Main.qml
         snake.qml
     RESOURCES
-        Assets/Eternal-Ceremony/Interact.gif
-        Assets/Eternal-Ceremony/Relax.gif
-        Assets/Eternal-Ceremony/Sit.gif
-        Assets/Eternal-Ceremony/Sleep.gif
-        Assets/Eternal-Ceremony/Special.gif
-        Assets/Influences-Through-the-Ages/Interact.gif
-        Assets/Influences-Through-the-Ages/Relax.gif
-        Assets/Influences-Through-the-Ages/Sit.gif
-        Assets/Influences-Through-the-Ages/Sleep.gif
-        Assets/Influences-Through-the-Ages/Special.gif
+        ./Assets/Eternal-Ceremony/Interact.webm
+        ./Assets/Eternal-Ceremony/Relax.webm
+        ./Assets/Eternal-Ceremony/Move.webm
+        ./Assets/Eternal-Ceremony/Sit.webm
+        ./Assets/Eternal-Ceremony/Sleep.webm
+        ./Assets/Eternal-Ceremony/Special.webm
+        ./Assets/Influences-Through-the-Ages/Interact.webm
+        ./Assets/Influences-Through-the-Ages/Relax.webm
+        ./Assets/Influences-Through-the-Ages/Move.webm
+        ./Assets/Influences-Through-the-Ages/Sit.webm
+        ./Assets/Influences-Through-the-Ages/Sleep.webm
+        ./Assets/Influences-Through-the-Ages/Special.webm
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

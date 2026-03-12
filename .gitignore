@@ -1,6 +1,7 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 compile_commands.json
+CMakePresets.json
 *~
 *.autosave
 *.a
@@ -15,6 +16,7 @@ compile_commands.json
 *_pch.h.cpp
 *_resource.rc
 *.qm
+.qmlls.ini
 .#*
 *.*#
 core
@@ -34,6 +36,7 @@ Thumbs.db
 *.rc
 /.qmake.cache
 /.qmake.stash
+/.cache
 
 # qtcreator generated files
 *.pro.user*
@@ -79,4 +82,4 @@ CMakeLists.txt.user*
 .pch/
 .rcc/
 .uic/
-/build*/
+/out*/

@@ -14,7 +14,7 @@ Window {
         width: parent.width / 3
         height: parent.height
         text: "Add"
-        onClicked: createSnake()
+        onClicked: root.createSnake()
     }
     Button {
         x: parent.width / 3
@@ -31,7 +31,7 @@ Window {
         AnimatedImage {
             width: parent.width
             height: parent.height
-            source: snakeStyle + "/Relax.gif"
+            source: root.snakeStyle + "/Relax.webm"
             fillMode: Image.PreserveAspectFit
         }
     }
@@ -41,11 +41,11 @@ Window {
         x: parent.width / 3
         MenuItem {
             text: "Eternal-Ceremony"
-            onTriggered: snakeStyle = "Assets/Eternal-Ceremony"
+            onTriggered: root.snakeStyle = "Assets/Eternal-Ceremony"
         }
         MenuItem {
             text: "Influences-Through-the-Ages"
-            onTriggered: snakeStyle = "Assets/Influences-Through-the-Ages"
+            onTriggered: root.snakeStyle = "Assets/Influences-Through-the-Ages"
         }
     }
 
@@ -53,7 +53,7 @@ Window {
         var component = Qt.createComponent("snake.qml");
         if (component.status === Component.Ready) {
             snakeWindow.push(component.createObject(null));
-            snakeWindow[snakeWindow.length - 1].setStyle(snakeStyle);
+            snakeWindow[snakeWindow.length - 1].setStyle(root.snakeStyle);
             snakeWindow[snakeWindow.length - 1].show();
         }
     }

@@ -7,8 +7,8 @@
 
 ## 执行样例
 
-![菜单样例](../../Asset/Snipaste_2026-03-02_11-18-33.jpg)
-![snake样例](../../Asset/Snipaste_2026-03-02_11-21-04.jpg)
+![菜单样例](..\Assets\Example\Snipaste_2026-03-02_11-18-33.jpg)
+![snake样例](..\Assets\Example\Snipaste_2026-03-02_11-21-04.jpg)
 
 ---
 
