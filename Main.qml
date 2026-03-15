@@ -6,10 +6,16 @@ Window {
     width: 300
     height: 50
     visible: true
-
-    property string snakeStyle: "Assets/Eternal-Ceremony"
+    property string snakeStyle: "qrc:///Assets/Eternal-Ceremony"
     property var snakeWindow: [null]
-
+    onClosing: {
+        for (var i = 0; i < snakeWindow.length; i++) {
+            if (snakeWindow[i] !== null) {
+                snakeWindow[i].destroy();
+            }
+        }
+        console.log("All snake windows closed.");
+    }
     Button {
         width: parent.width / 3
         height: parent.height
@@ -31,7 +37,7 @@ Window {
         AnimatedImage {
             width: parent.width
             height: parent.height
-            source: root.snakeStyle + "/Relax.webm"
+            source: root.snakeStyle + "/Relax.gif"
             fillMode: Image.PreserveAspectFit
         }
     }
@@ -41,11 +47,11 @@ Window {
         x: parent.width / 3
         MenuItem {
             text: "Eternal-Ceremony"
-            onTriggered: root.snakeStyle = "Assets/Eternal-Ceremony"
+            onTriggered: root.snakeStyle = "qrc:///Assets/Eternal-Ceremony"
         }
         MenuItem {
             text: "Influences-Through-the-Ages"
-            onTriggered: root.snakeStyle = "Assets/Influences-Through-the-Ages"
+            onTriggered: root.snakeStyle = "qrc:///Assets/Influences-Through-the-Ages"
         }
     }
 

@@ -10,12 +10,12 @@ Window {
     property real zoom: 1
     property string currentState: "relax"
     property string style
-    property string relaxWebm: "/Relax.webm"
-    property string interactWebm: "/Interact.webm"
-    property string moveWebm: "/Move.webm"
-    property string sitWebm: "/Sit.webm"
-    property string sleepWebm: "/Sleep.webm"
-    property string specialWebm: "/Special.webm"
+    property string relaxGif: "/Relax.gif"
+    property string interactGif: "/Interact.gif"
+    property string moveGif: "/Move.gif"
+    property string sitGif: "/Sit.gif"
+    property string sleepGif: "/Sleep.gif"
+    property string specialGif: "/Special.gif"
     property point passStartPos
     property point passWindowPos
     property bool longPassed: false
@@ -40,20 +40,25 @@ Window {
     }
 
     AnimatedImage {
-        id: snakeWebm
+        id: snakeGif
         anchors.fill: parent
         source: {
-            if (snake.currentState === "relax")
-                return snake.style + snake.relaxWebm;
-            if (snake.currentState === "interact")
-                return snake.style + snake.interactWebm;
-            if (snake.currentState === "special")
-                return snake.style + snake.specialWebm;
-            if (snake.currentState === "sit")
-                return snake.style + snake.sitWebm;
-            if (snake.currentState === "sleep")
-                return snake.style + snake.sleepWebm;
-            return snake.style + snake.relaxWebm;
+            switch (snake.currentState) {
+            case "relax":
+                return snake.style + snake.relaxGif;
+            case "interact":
+                return snake.style + snake.interactGif;
+            case "move":
+                return snake.style + snake.moveGif;
+            case "sit":
+                return snake.style + snake.sitGif;
+            case "sleep":
+                return snake.style + snake.sleepGif;
+            case "special":
+                return snake.style + snake.specialGif;
+            default:
+                return snake.style + snake.relaxGif;
+            }
         }
         visible: true
         fillMode: Image.PreserveAspectFit
@@ -106,8 +111,8 @@ Window {
             if (wheel.modifiers & Qt.ControlModifier) {
                 snake.zoom += wheel.angleDelta.y / 1200;
                 snake.zoom = Math.max(0.5, Math.min(3.0, snake.zoom));
-                snake.width = snakeWebm.implicitWidth * snake.zoom;
-                snake.height = snakeWebm.implicitHeight * snake.zoom;
+                snake.width = snakeGif.implicitWidth * snake.zoom;
+                snake.height = snakeGif.implicitHeight * snake.zoom;
                 wheel.accepted = true;
             }
         }
@@ -138,5 +143,9 @@ Window {
 
     function setStyle(snakeStyle: string) {
         style = snakeStyle;
+    }
+
+    Component.onCompleted: {
+        console.log("Snake initialized with style:", snake.style);
     }
 }
