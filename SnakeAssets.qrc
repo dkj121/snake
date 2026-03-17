@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/Gifs">
+        <file>Assets/Influences-Through-the-Ages/Interact-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Move-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Relax-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Sit-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Special-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Sleep-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Relax-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Interact-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Sit-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Sleep-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Special-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Move-right.gif</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>Qmls/Main.qml</file>
+        <file>Qmls/snake.qml</file>
+    </qresource>
+</RCC>

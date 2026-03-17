@@ -1,7 +1,6 @@
 # Snake Pet~~
 
 一个基于QtQuick、QML、C++、CMake、GCC、ffmpeg的桌宠应用。
-**由于是基于Gif播放动画，所以项目构建占用过大虚拟内存！！！**
 
 ---
 
@@ -37,18 +36,24 @@ Windows11
 
 图片来源：[prts.wiki](https://prts.wiki/)
 
-后采用ffmpeg修改:
+后采用[ffmpeg](https://ffmpeg.org/)修改:
 
-webm转gif:
+webm转gif,同时去除背景颜色0xFF0000:
 
 ```PowerShell
-ffmpeg -i input.webm -filter_complex "[0:v]chromakey=color=0xFF0000:similarity=0.3:blend=0.0[ckout];[ckout]fps=15[fast];[fast]split[base][alpha];[base]palettegen=stats_mode=diff[pal];[alpha][pal]paletteuse=new=1:alpha_threshold=128" output.gif
+ffmpeg -i input.webm -filter_complex "[0:v]chromakey=color=0xFF0000:similarity=0.3:blend=0.0[ckout];[ckout]fps=30[fast];[fast]split[base][alpha];[base]palettegen=stats_mode=diff[pal];[alpha][pal]paletteuse=new=1:alpha_threshold=128" out.gif
 ```
 
 调整图片大小:
 
 ```PowerShell
-ffmpeg -i input.gif -vf "format=rgba,crop=x:y:z:a,split[temp][original];[temp]palettegen=stats_mode=diff[pal];[original][pal]paletteuse=new=1:alpha_threshold=128" output.gif`
+ffmpeg -i input.gif -vf "format=rgba,crop=x:y:z:a,split[temp][original];[temp]palettegen=stats_mode=diff[pal];[original][pal]paletteuse=new=1:alpha_threshold=128" output.gif
+```
+
+左右颠倒:
+
+```PowerShell
+ffmpeg -i input.gif -vf hflip output.gif
 ```
 
 ---

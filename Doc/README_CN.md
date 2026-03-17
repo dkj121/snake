@@ -1,7 +1,6 @@
 # Snake Pet~~
 
 一个基于QtQuick、QML、C++、CMake、GCC、ffmpeg的桌宠应用。
-**由于是基于Gif播放动画，所以项目构建占用过大虚拟内存！！！**
 
 ---
 
