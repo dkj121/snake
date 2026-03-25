@@ -3,6 +3,7 @@
 compile_commands.json
 CMakePresets.json
 .vscode/
+.sisyphus/
 *~
 *.autosave
 *.a

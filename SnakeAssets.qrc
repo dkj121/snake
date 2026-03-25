@@ -13,8 +13,9 @@
         <file>Assets/Eternal-Ceremony/Special-right.gif</file>
         <file>Assets/Eternal-Ceremony/Move-right.gif</file>
     </qresource>
-    <qresource prefix="/">
+    <qresource prefix="/Qmls">
         <file>Qmls/Main.qml</file>
         <file>Qmls/snake.qml</file>
+        <file>Qmls/Settings.qml</file>
     </qresource>
 </RCC>

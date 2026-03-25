@@ -8,6 +8,8 @@ Window {
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
     color: "transparent"
     property real zoom: 1
+    property int minInterval: 10000
+    property int maxInterval: 30000
     property string currentState: "relax"
     property string style
     property string relaxGif: "/Relax-right.gif"
@@ -39,16 +41,35 @@ Window {
         }
     }
 
+    Timer {
+        id: moveTimer
+        interval: snake.setNextMoveInterval()
+        repeat: true
+        onTriggered: {
+            if (snake.currentState === "relax") {
+                snake.currentState = "move";
+                moveTimer.interval = snake.setNextMoveInterval();
+                moveTimer.restart();
+            } else if (snake.currentState === "move") {
+                snake.currentState = "relax";
+                moveTimer.interval = snake.setNextMoveInterval();
+                moveTimer.restart();
+            }
+        }
+    }
+
     AnimatedImage {
         id: snakeGif
         anchors.fill: parent
         source: {
             switch (snake.currentState) {
             case "relax":
+                moveTimer.restart();
                 return snake.style + snake.relaxGif;
             case "interact":
                 return snake.style + snake.interactGif;
             case "move":
+                moveTimer.restart();
                 return snake.style + snake.moveGif;
             case "sit":
                 return snake.style + snake.sitGif;
@@ -66,10 +87,12 @@ Window {
             console.log("Source changed to:", source);
         }
         onFrameChanged: {
-            if (currentFrame === frameCount - 1) {
-                if (snake.currentState === "interact" || snake.currentState === "special") {
-                    snake.currentState = "relax";
-                }
+            if ((snake.currentState === "special" || snake.currentState === "interact") && currentFrame === frameCount - 1) {
+                snake.currentState = "relax";
+                moveTimer.restart();
+            } else if (snake.currentState === "move") {
+                snake.x += (Math.random() - 0.5) * 20;
+                snake.y += (Math.random() - 0.5) * 20;
             }
         }
     }
@@ -113,7 +136,7 @@ Window {
         onWheel: wheel => {           // ctrl + 滚轮调节大小
             if (wheel.modifiers & Qt.ControlModifier) {
                 snake.zoom += wheel.angleDelta.y / 1200;
-                snake.zoom = Math.max(0.5, Math.min(3.0, snake.zoom));
+                snake.zoom = Math.max(0.1, Math.min(1.0, snake.zoom));
                 snake.width = snakeGif.implicitWidth * snake.zoom;
                 snake.height = snakeGif.implicitHeight * snake.zoom;
                 wheel.accepted = true;
@@ -146,6 +169,11 @@ Window {
 
     function setStyle(snakeStyle: string) {
         style = snakeStyle;
+        console.log("Style set to:", style);
+    }
+
+    function setNextMoveInterval() {
+        return Math.floor(snake.minInterval + Math.random() * (snake.maxInterval - snake.minInterval + 1));
     }
 
     Component.onCompleted: {
