@@ -2,20 +2,43 @@ import QtQuick
 
 Window {
     id: root
-    width: 100
-    height: 100
+    width: 200
+    height: 200
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
     color: "transparent"
 
-    property real zoom: 1
+    property real zoom: 0.5
     property point passStartPos
     property point passWindowPos
     property bool longPassed: false
     property bool isDoubleClicked: false
 
+    Behavior on x {
+        NumberAnimation {
+            duration: 100
+            easing.type: Easing.Linear
+        }
+    }
+
+    Behavior on y {
+        NumberAnimation {
+            duration: 100
+            easing.type: Easing.Linear
+        }
+    }
+
+    onXChanged: {
+        console.log("X changed to: " + x);
+    }
+
+    onZoomChanged: {
+        console.log("Zoom changed to: " + zoom);
+    }
+
     Snake {
         id: snake
         anchors.fill: parent
+        snakeWindow: root
     }
 
     SnakeWindowController {
@@ -27,6 +50,7 @@ Window {
     SnakeMenu {
         id: snakeMenu
         snake: snake
+        snakeWindow: root
     }
 
     MouseArea {
@@ -68,9 +92,9 @@ Window {
         onWheel: wheel => {           // ctrl + 滚轮调节大小
             if (wheel.modifiers & Qt.ControlModifier) {
                 root.zoom += wheel.angleDelta.y / 1200;
-                root.zoom = Math.max(0.1, Math.min(1.0, root.zoom));
-                root.width = snake.gifSize.width * root.zoom;
-                root.height = snake.gifSize.height * root.zoom;
+                root.zoom = Math.max(0.5, Math.min(3.0, root.zoom));
+                root.width = 200 * root.zoom;
+                root.height = 200 * root.zoom;
                 wheel.accepted = true;
             }
         }
@@ -85,5 +109,9 @@ Window {
 
     function setStyle(style) {
         snake.style = style;
+    }
+
+    function deleteSnake() {
+        root.destroy();
     }
 }

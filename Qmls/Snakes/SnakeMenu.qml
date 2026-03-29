@@ -20,6 +20,6 @@ Menu {
     }
     MenuItem {
         text: "Delete"
-        onTriggered: root.snakeWindow.close()
+        onTriggered: root.snakeWindow.deleteSnake()
     }
 }

@@ -1,27 +1,64 @@
+// SnakeWindowController.qml
 import QtQuick
+import QtQuick.Window // 必须导入
 
 Item {
     id: root
     property var snake: null
+    property var snakeWindow: null
     property int minInterval: 10000
     property int maxInterval: 30000
 
+    // 状态随机切换定时器
     Timer {
-        id: moveTimer
-        interval: root.maxInterval
+        id: stateTimer
+        interval: root.setNextMoveInterval()
         repeat: true
         running: true
         onTriggered: {
-            if (!root.snake || !root.snake.isMoveable) {
+            if (!root.snake || !root.snake.isMoveable)
                 return;
+            var state = root.snake.currentState;
+            if (state !== "/Sit" && state !== "/Sleep" && state !== "/Special") {
+                root.snake.currentState = (state === "/Relax") ? "/Move" : "/Relax";
+                interval = root.setNextMoveInterval();
             }
-            if (root.snake.isMoveable && root.snake.currentState !== "/Sit" && root.snake.currentState !== "/Sleep" && root.snake.currentState !== "/Special") {
-                if (root.snake.currentState === "/Relax") {
-                    root.snake.currentState = "/Move";
-                } else if (root.snake.currentState === "/Move") {
-                    root.snake.currentState = "/Relax";
+        }
+    }
+
+    // 移动定时器
+    Timer {
+        id: moveTimer
+        interval: 50
+        running: root.snake && root.snake.currentState === "/Move" && root.snake.isMoveable
+        repeat: true
+        onTriggered: {
+            if (!root.snake || root.snake.currentState !== "/Move")
+                return;
+
+            var delta = 2 * root.snakeWindow.zoom * (root.snake.rightOrLeft === "-right.gif" ? 1 : -1);
+            var newX = root.snakeWindow.x + delta;
+            var reachedBoundary = false;
+
+            if (root.snake.rightOrLeft === "-right.gif") {
+                var maxX = Screen.desktopAvailableWidth - root.snakeWindow.width;
+                if (newX >= maxX) {
+                    newX = maxX;
+                    reachedBoundary = true;
                 }
-                moveTimer.interval = root.setNextMoveInterval();
+            } else {
+                if (newX <= 0) {
+                    newX = 0;
+                    reachedBoundary = true;
+                }
+            }
+
+            console.log("rightOrLeft:", root.snake.rightOrLeft, "delta:", delta, "oldX:", root.snakeWindow.x, "newX:", newX);
+
+            root.snakeWindow.x = newX; // Behavior 会平滑过渡
+
+            if (reachedBoundary) {
+                root.snake.currentState = "/Relax";
             }
         }
     }

@@ -14,7 +14,6 @@
         <file>Assets/Eternal-Ceremony/Move-right.gif</file>
         
         <file>Qmls/Main.qml</file>
-        <file>Qmls/Events.qml</file>
 
         <file>Qmls/Snakes/Snake.qml</file>
         <file>Qmls/Snakes/SnakeGif.qml</file>
