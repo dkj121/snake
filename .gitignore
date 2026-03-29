@@ -1,5 +1,6 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
+DevNote.md
 compile_commands.json
 CMakePresets.json
 .vscode/

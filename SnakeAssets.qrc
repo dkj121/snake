@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/Gifs">
+    <qresource prefix="/">
         <file>Assets/Influences-Through-the-Ages/Interact-right.gif</file>
         <file>Assets/Influences-Through-the-Ages/Move-right.gif</file>
         <file>Assets/Influences-Through-the-Ages/Relax-right.gif</file>
@@ -12,10 +12,19 @@
         <file>Assets/Eternal-Ceremony/Sleep-right.gif</file>
         <file>Assets/Eternal-Ceremony/Special-right.gif</file>
         <file>Assets/Eternal-Ceremony/Move-right.gif</file>
-    </qresource>
-    <qresource prefix="/Qmls">
+        
         <file>Qmls/Main.qml</file>
-        <file>Qmls/snake.qml</file>
-        <file>Qmls/Settings.qml</file>
+        <file>Qmls/Events.qml</file>
+
+        <file>Qmls/Snakes/Snake.qml</file>
+        <file>Qmls/Snakes/SnakeGif.qml</file>
+        <file>Qmls/Snakes/SnakeController.qml</file>
+        <file>Qmls/Snakes/SnakeMenu.qml</file>
+        <file>Qmls/Snakes/SnakeWindow.qml</file>
+        <file>Qmls/Snakes/SnakeWindowController.qml</file>
+
+        <file>Qmls/Setting/Settings.qml</file>
+        <file>Qmls/Setting/StyleManager.qml</file>
+        <file>Qmls/Setting/qmldir</file>
     </qresource>
 </RCC>

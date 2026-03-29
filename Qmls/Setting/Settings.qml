@@ -1,3 +1,4 @@
+import "." as Setting
 import QtQuick
 import QtQuick.Controls
 
@@ -6,18 +7,12 @@ Window {
     width: 800
     height: 500
     visible: true
-    property string snakeStyle
-    property var mainWindow: null
-
-    onSnakeStyleChanged: {
-        console.log("Snake style changed to: " + snakeStyle);
-    }
 
     Text {
         x: 0
         height: 30
         width: parent.width / 2
-        text: settings.snakeStyle.split("/").slice(-1)[0]
+        text: "Snake Style:" + Setting.StyleManager.getStyleName()
         font.pixelSize: 24
     }
 
@@ -25,7 +20,7 @@ Window {
         x: parent.width / 2
         height: 30
         width: parent.width / 2
-        text: "Style"
+        text: Setting.StyleManager.getStyleName()
         onClicked: snakeStyleMenu.popup()
     }
 
@@ -36,15 +31,13 @@ Window {
         MenuItem {
             text: "Eternal-Ceremony"
             onTriggered: {
-                settings.snakeStyle = "qrc:///Gifs/Assets/Eternal-Ceremony";
-                settings.mainWindow.snakeStyle = settings.snakeStyle;
+                Setting.StyleManager.setStyleByName("Eternal-Ceremony");
             }
         }
         MenuItem {
             text: "Influences-Through-the-Ages"
             onTriggered: {
-                settings.snakeStyle = "qrc:///Gifs/Assets/Influences-Through-the-Ages";
-                settings.mainWindow.snakeStyle = settings.snakeStyle;
+                Setting.StyleManager.setStyleByName("Influences-Through-the-Ages");
             }
         }
     }

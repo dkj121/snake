@@ -1,3 +1,4 @@
+import "./Setting/" as Setting
 import QtQuick
 import QtQuick.Controls
 
@@ -6,7 +7,6 @@ Window {
     width: 300
     height: 50
     visible: true
-    property string snakeStyle: "qrc:///Gifs/Assets/Eternal-Ceremony"
     property var snakeWindows: []
     property var settingsWindow: null
 
@@ -24,42 +24,33 @@ Window {
         onClicked: root.openSettings()
     }
 
-    Page {
+    AnimatedImage {
         x: parent.width / 3 * 2
         width: parent.width / 3
         height: parent.height
-        AnimatedImage {
-            width: parent.width
-            height: parent.height
-            source: root.snakeStyle + "/Relax-right.gif"
-            fillMode: Image.PreserveAspectFit
-        }
+        source: Setting.StyleManager.getStylePath() + "/Relax-right.gif"
+        fillMode: Image.PreserveAspectFit
     }
 
     function createSnake() {
-        var component = Qt.createComponent("qrc:///Qmls/Qmls/snake.qml");
+        var component = Qt.createComponent("qrc:///Qmls/Snakes/SnakeWindow.qml");
+        console.log("Error creating snake window: " + component.status + " - " + component.errorString());
         if (component.status === Component.Ready) {
-            snakeWindows.push(component.createObject(null));
-            snakeWindows[snakeWindows.length - 1].setStyle(root.snakeStyle);
-            snakeWindows[snakeWindows.length - 1].show();
-            console.log("SnakeWindow created with style: " + root.snakeStyle);
-        } else {
-            console.error("Failed to create snake window: " + component.errorString());
+            var snakeWindow = component.createObject(null);
+            if (snakeWindow) {
+                snakeWindow.setStyle(Setting.StyleManager.getStylePath());
+                snakeWindows.push(snakeWindow);
+                snakeWindows[snakeWindows.length - 1].show();
+            }
         }
     }
     function openSettings() {
         if (settingsWindow === null) {
-            var component = Qt.createComponent("qrc:///Qmls/Qmls/Settings.qml");
+            var component = Qt.createComponent("qrc:///Qmls/Setting/Settings.qml");
             if (component.status === Component.Ready) {
                 settingsWindow = component.createObject(null);
-                settingsWindow.snakeStyle = root.snakeStyle;
-                settingsWindow.mainWindow = root;
                 settingsWindow.show();
-                console.log("Settings window created with snake style: " + root.snakeStyle);
             }
-        } else {
-            settingsWindow.visible = !settingsWindow.visible;
-            console.error("Settings window already open, toggling visibility.");
         }
     }
 }
