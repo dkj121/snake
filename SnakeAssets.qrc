@@ -1,18 +1,30 @@
 <RCC>
     <qresource prefix="/">
         <file>Assets/Influences-Through-the-Ages/Interact-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Interact-left.gif</file>
         <file>Assets/Influences-Through-the-Ages/Move-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Move-left.gif</file>
         <file>Assets/Influences-Through-the-Ages/Relax-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Relax-left.gif</file>
         <file>Assets/Influences-Through-the-Ages/Sit-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Sit-left.gif</file>
         <file>Assets/Influences-Through-the-Ages/Special-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Special-left.gif</file>
         <file>Assets/Influences-Through-the-Ages/Sleep-right.gif</file>
+        <file>Assets/Influences-Through-the-Ages/Sleep-left.gif</file>
         <file>Assets/Eternal-Ceremony/Relax-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Relax-left.gif</file>
         <file>Assets/Eternal-Ceremony/Interact-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Interact-left.gif</file>
         <file>Assets/Eternal-Ceremony/Sit-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Sit-left.gif</file>
         <file>Assets/Eternal-Ceremony/Sleep-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Sleep-left.gif</file>
         <file>Assets/Eternal-Ceremony/Special-right.gif</file>
+        <file>Assets/Eternal-Ceremony/Special-left.gif</file>
         <file>Assets/Eternal-Ceremony/Move-right.gif</file>
-        
+        <file>Assets/Eternal-Ceremony/Move-left.gif</file>
+
         <file>Qmls/Main.qml</file>
 
         <file>Qmls/Snakes/Snake.qml</file>

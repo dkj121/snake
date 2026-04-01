@@ -56,7 +56,7 @@ Item {
             root.snakeWindow.x = newX; // Behavior 会平滑过渡
 
             if (reachedBoundary) {
-                root.snake.currentState = "/Relax";
+                root.snake.rightOrLeft = (root.snake.rightOrLeft === "-right.gif") ? "-left.gif" : "-right.gif";
             }
         }
     }

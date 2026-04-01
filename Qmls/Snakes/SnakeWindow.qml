@@ -78,6 +78,11 @@ Window {
                 var newY = root.passWindowPos.y + currentMouse.y - root.passStartPos.y;
                 newX = Math.max(0, Math.min(Screen.desktopAvailableWidth - snake.width, newX));
                 newY = Math.max(0, Math.min(Screen.desktopAvailableHeight - snake.height, newY));
+                if (newX > root.x) {
+                    snake.rightOrLeft = "-right.gif";
+                } else if (newX < root.x) {
+                    snake.rightOrLeft = "-left.gif";
+                }
                 root.x = newX;
                 root.y = newY;
             }
