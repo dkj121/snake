@@ -7,7 +7,7 @@ Menu {
     property var snakeWindow
 
     MenuItem {
-        text: "Moveable"
+        text: root.snake.isMoveable ? "Moveable" : "Unmoveable"
         onTriggered: root.snake.isMoveable = !root.snake.isMoveable
     }
     MenuItem {

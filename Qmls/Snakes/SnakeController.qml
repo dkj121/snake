@@ -53,8 +53,6 @@ Item {
                 }
             }
 
-            console.log("rightOrLeft:", root.snake.rightOrLeft, "delta:", delta, "oldX:", root.snakeWindow.x, "newX:", newX);
-
             root.snakeWindow.x = newX; // Behavior 会平滑过渡
 
             if (reachedBoundary) {

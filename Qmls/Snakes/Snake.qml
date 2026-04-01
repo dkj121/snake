@@ -8,6 +8,7 @@ Item {
     property string rightOrLeft: "-right.gif"
     property size gifSize: Qt.size(snakeGif.implicitWidth, snakeGif.implicitHeight)
     property var snakeWindow: null
+    property int speed: 0
 
     onCurrentStateChanged: {
         console.log("Current state changed to: " + currentState);
@@ -31,5 +32,9 @@ Item {
         id: snakeGif
         snake: root
         snakeWindow: root.snakeWindow
+    }
+
+    function setSpeed(speed) {
+        root.speed = speed;
     }
 }

@@ -107,8 +107,9 @@ Window {
         }
     }
 
-    function setStyle(style) {
+    function setStyle(style, speed) {
         snake.style = style;
+        snake.speed = speed;
     }
 
     function deleteSnake() {

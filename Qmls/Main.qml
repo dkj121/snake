@@ -38,7 +38,7 @@ Window {
         if (component.status === Component.Ready) {
             var snakeWindow = component.createObject(null);
             if (snakeWindow) {
-                snakeWindow.setStyle(Setting.StyleManager.getStylePath());
+                snakeWindow.setStyle(Setting.StyleManager.getStylePath(), Setting.StyleManager.getSpeed());
                 snakeWindows.push(snakeWindow);
                 snakeWindows[snakeWindows.length - 1].show();
             }

@@ -44,10 +44,10 @@ webm转gif:
 ffmpeg -i input.webm -filter_complex "[0:v]chromakey=color=0xFF0000:similarity=0.3:blend=0.0[ckout];[ckout]fps=15[fast];[fast]split[base][alpha];[base]palettegen=stats_mode=diff[pal];[alpha][pal]paletteuse=new=1:alpha_threshold=128" output.gif
 ```
 
-调整图片大小:
+左右颠倒:
 
 ```PowerShell
-ffmpeg -i input.gif -vf "format=rgba,crop=x:y:z:a,split[temp][original];[temp]palettegen=stats_mode=diff[pal];[original][pal]paletteuse=new=1:alpha_threshold=128" output.gif`
+ffmpeg -i input.webm -vf hflip output.webm
 ```
 
 ---
